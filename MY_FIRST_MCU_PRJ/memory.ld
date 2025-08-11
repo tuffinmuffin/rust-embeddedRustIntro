@@ -2,13 +2,23 @@
 
 ENTRY(reset_handler) /*Entry point for the program, reset_handler is defined in startup file*/
 
+/*STM32f303*/
 MEMORY {
     FLASH (rx) : ORIGIN = 0x08000000, LENGTH = 256K
     RAM (rwx) : ORIGIN = 0x20000000, LENGTH = 40K
     /*EEPROM (rwx) : ORIGIN = 0x08080000, LENGTH = 4K*/
-    CCMRAM (rwx) : ORIGIN = 0x10000000, LENGTH = 8K
+    /*CCMRAM (rwx) : ORIGIN = 0x10000000, LENGTH = 8K*/
     /*BATTRAM (rwx) : ORIGIN = 0x40024000, LENGTH = 4K*/ /*looks wrong*/
 }
+
+/*STM32h563*/
+
+/* MEMORY {
+    FLASH (rx) : ORIGIN = 0x08000000, LENGTH = 2M
+    RAM (rwx) : ORIGIN = 0x20000000, LENGTH = 655360
+    BATTRAM (rwx) : ORIGIN = 0x50036400, LENGTH = 4K
+} */
+
 
 _start_of_stack = ORIGIN(RAM) + LENGTH(RAM); /*End of RAM +1*/
 _min_stack_size = 0x400; /*Minimum stack size, 1K*/
@@ -21,6 +31,8 @@ SECTIONS
     .text :
     {
         . = ALIGN(4);
+        LONG( _start_of_stack) /*Initial stack pointer*/
+        KEEP(*(.isr_vector)) /*Startup code*/
         *(.text)
         *(.text*)
         . = ALIGN(4);
@@ -60,3 +72,8 @@ SECTIONS
         . = ALIGN(8);
     } > RAM
 }
+
+
+
+INCLUDE device_STM32F303.x
+INCLUDE device_STM32H563.x

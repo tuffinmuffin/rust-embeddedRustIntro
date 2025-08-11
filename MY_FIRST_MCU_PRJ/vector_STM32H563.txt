@@ -1,0 +1,287 @@
+#[no_mangle]
+extern "C" fn HardFault_Handler() { loop {} }
+#[no_mangle]
+extern "C" fn NMI_Handler() { loop {} }
+#[no_mangle]
+extern "C" fn Reset_Handler() { loop {} }
+#[no_mangle]
+extern "C" fn Default_Handler() { loop {} }
+
+extern "C" {
+    fn PendSV_Handler();
+    fn SVCall_Handler();
+    fn SysTick_Handler();
+    fn ADC1_Handler();
+    fn ADC2_Handler();
+    fn CRS_Handler();
+    fn Cordic_Handler();
+    fn DAC1_Handler();
+    fn DCACHE_Handler();
+    fn DCMI_PSSI_Handler();
+    fn DTS_WKUP_Handler();
+    fn ETH_Handler();
+    fn ETH_WKUP_Handler();
+    fn EXTI0_Handler();
+    fn EXTI10_Handler();
+    fn EXTI11_Handler();
+    fn EXTI12_Handler();
+    fn EXTI13_Handler();
+    fn EXTI14_Handler();
+    fn EXTI15_Handler();
+    fn EXTI1_Handler();
+    fn EXTI2_Handler();
+    fn EXTI3_Handler();
+    fn EXTI4_Handler();
+    fn EXTI5_Handler();
+    fn EXTI6_Handler();
+    fn EXTI7_Handler();
+    fn EXTI8_Handler();
+    fn EXTI9_Handler();
+    fn FDCAN1_IT0_Handler();
+    fn FDCAN1_IT1_Handler();
+    fn FDCAN2_IT0_Handler();
+    fn FDCAN2_IT1_Handler();
+    fn FLASH_Handler();
+    fn FLASH_S_Handler();
+    fn FMAC_Handler();
+    fn FMC_Handler();
+    fn GPDMA1_CH0_Handler();
+    fn GPDMA1_CH1_Handler();
+    fn GPDMA1_CH2_Handler();
+    fn GPDMA1_CH3_Handler();
+    fn GPDMA1_CH4_Handler();
+    fn GPDMA1_CH5_Handler();
+    fn GPDMA1_CH6_Handler();
+    fn GPDMA1_CH7_Handler();
+    fn GPDMA2_CH0_Handler();
+    fn GPDMA2_CH1_Handler();
+    fn GPDMA2_CH2_Handler();
+    fn GPDMA2_CH3_Handler();
+    fn GPDMA2_CH4_Handler();
+    fn GPDMA2_CH5_Handler();
+    fn GPDMA2_CH6_Handler();
+    fn GPDMA2_CH7_Handler();
+    fn GTZC_Handler();
+    fn HASH_Handler();
+    fn I2C1_ER_Handler();
+    fn I2C1_EV_Handler();
+    fn I2C2_ER_Handler();
+    fn I2C2_EV_Handler();
+    fn I2C3_ER_Handler();
+    fn I2C3_EV_Handler();
+    fn I2C4_ER_Handler();
+    fn I2C4_EV_Handler();
+    fn I3C1_ER_Handler();
+    fn I3C1_EV_Handler();
+    fn ICACHE_Handler();
+    fn IM8_BRK_TERR_IERR_Handler();
+    fn IWDG_Handler();
+    fn LPTIM1_Handler();
+    fn LPTIM2_Handler();
+    fn LPTIM3_Handler();
+    fn LPTIM4_Handler();
+    fn LPTIM5_Handler();
+    fn LPTIM6_Handler();
+    fn LPUART1_Handler();
+    fn OCTOSPI1_Handler();
+    fn RAMCFG_Handler();
+    fn RCC_Handler();
+    fn RCC_S_Handler();
+    fn RNG_Handler();
+    fn SAI1_Handler();
+    fn SAI2_Handler();
+    fn SDMMC1_Handler();
+    fn SDMMC2_Handler();
+    fn SPI1_Handler();
+    fn SPI2_Handler();
+    fn SPI3_Handler();
+    fn SPI4_Handler();
+    fn SPI5_Handler();
+    fn SPI6_Handler();
+    fn TAMP_Handler();
+    fn TIM12_Handler();
+    fn TIM13_Handler();
+    fn TIM14_Handler();
+    fn TIM15_Handler();
+    fn TIM16_Handler();
+    fn TIM17_Handler();
+    fn TIM1_BRK_TERR_IERR_Handler();
+    fn TIM1_CC_Handler();
+    fn TIM1_TRG_COM_DIR_IDX_Handler();
+    fn TIM1_UP_Handler();
+    fn TIM2_Handler();
+    fn TIM3_Handler();
+    fn TIM4_Handler();
+    fn TIM5_Handler();
+    fn TIM6_Handler();
+    fn TIM7_Handler();
+    fn TIM8_CC_Handler();
+    fn TIM8_TRG_COM_DIR_IDX_Handler();
+    fn TIM8_UP_Handler();
+    fn UART12_Handler();
+    fn UART4_Handler();
+    fn UART5_Handler();
+    fn UART7_Handler();
+    fn UART8_Handler();
+    fn UART9_Handler();
+    fn UCPD1_Handler();
+    fn USART10_Handler();
+    fn USART11_Handler();
+    fn USART1_Handler();
+    fn USART2_Handler();
+    fn USART3_Handler();
+    fn USART6_Handler();
+    fn USB_FS_Handler();
+    fn WWDG_Handler();
+}
+
+#[used]
+#[link_section = ".isr_vector"]
+static VECTOR_TABLE: [Option<unsafe extern "C" fn()>; 146] = [
+    Some(Reset_Handler),
+    Some(NMI_Handler),
+    Some(HardFault_Handler),
+    None,
+    None,
+    None,
+    None,
+    None,
+    None,
+    None,
+    Some(SVCall_Handler),
+    None,
+    None,
+    Some(PendSV_Handler),
+    Some(SysTick_Handler),
+    Some(WWDG_Handler),
+    None,
+    None,
+    None,
+    Some(TAMP_Handler),
+    Some(RAMCFG_Handler),
+    Some(FLASH_Handler),
+    Some(FLASH_S_Handler),
+    Some(GTZC_Handler),
+    Some(RCC_Handler),
+    Some(RCC_S_Handler),
+    Some(EXTI0_Handler),
+    Some(EXTI1_Handler),
+    Some(EXTI2_Handler),
+    Some(EXTI3_Handler),
+    Some(EXTI4_Handler),
+    Some(EXTI5_Handler),
+    Some(EXTI6_Handler),
+    Some(EXTI7_Handler),
+    Some(EXTI8_Handler),
+    Some(EXTI9_Handler),
+    Some(EXTI10_Handler),
+    Some(EXTI11_Handler),
+    Some(EXTI12_Handler),
+    Some(EXTI13_Handler),
+    Some(EXTI14_Handler),
+    Some(EXTI15_Handler),
+    Some(GPDMA1_CH0_Handler),
+    Some(GPDMA1_CH1_Handler),
+    Some(GPDMA1_CH2_Handler),
+    Some(GPDMA1_CH3_Handler),
+    Some(GPDMA1_CH4_Handler),
+    Some(GPDMA1_CH5_Handler),
+    Some(GPDMA1_CH6_Handler),
+    Some(GPDMA1_CH7_Handler),
+    Some(IWDG_Handler),
+    None,
+    Some(ADC1_Handler),
+    Some(DAC1_Handler),
+    Some(FDCAN1_IT0_Handler),
+    Some(FDCAN1_IT1_Handler),
+    Some(TIM1_BRK_TERR_IERR_Handler),
+    Some(TIM1_UP_Handler),
+    Some(TIM1_TRG_COM_DIR_IDX_Handler),
+    Some(TIM1_CC_Handler),
+    Some(TIM2_Handler),
+    Some(TIM3_Handler),
+    Some(TIM4_Handler),
+    Some(TIM5_Handler),
+    Some(TIM6_Handler),
+    Some(TIM7_Handler),
+    Some(I2C1_EV_Handler),
+    Some(I2C1_ER_Handler),
+    Some(I2C2_EV_Handler),
+    Some(I2C2_ER_Handler),
+    Some(SPI1_Handler),
+    Some(SPI2_Handler),
+    Some(SPI3_Handler),
+    Some(USART1_Handler),
+    Some(USART2_Handler),
+    Some(USART3_Handler),
+    Some(UART4_Handler),
+    Some(UART5_Handler),
+    Some(LPUART1_Handler),
+    Some(LPTIM1_Handler),
+    Some(IM8_BRK_TERR_IERR_Handler),
+    Some(TIM8_UP_Handler),
+    Some(TIM8_TRG_COM_DIR_IDX_Handler),
+    Some(TIM8_CC_Handler),
+    Some(ADC2_Handler),
+    Some(LPTIM2_Handler),
+    Some(TIM15_Handler),
+    Some(TIM16_Handler),
+    Some(TIM17_Handler),
+    Some(USB_FS_Handler),
+    Some(CRS_Handler),
+    Some(UCPD1_Handler),
+    Some(FMC_Handler),
+    Some(OCTOSPI1_Handler),
+    Some(SDMMC1_Handler),
+    Some(I2C3_EV_Handler),
+    Some(I2C3_ER_Handler),
+    Some(SPI4_Handler),
+    Some(SPI5_Handler),
+    Some(SPI6_Handler),
+    Some(USART6_Handler),
+    Some(USART10_Handler),
+    Some(USART11_Handler),
+    Some(SAI1_Handler),
+    Some(SAI2_Handler),
+    Some(GPDMA2_CH0_Handler),
+    Some(GPDMA2_CH1_Handler),
+    Some(GPDMA2_CH2_Handler),
+    Some(GPDMA2_CH3_Handler),
+    Some(GPDMA2_CH4_Handler),
+    Some(GPDMA2_CH5_Handler),
+    Some(GPDMA2_CH6_Handler),
+    Some(GPDMA2_CH7_Handler),
+    Some(UART7_Handler),
+    Some(UART8_Handler),
+    Some(UART9_Handler),
+    Some(UART12_Handler),
+    Some(SDMMC2_Handler),
+    None,
+    Some(ICACHE_Handler),
+    Some(DCACHE_Handler),
+    Some(ETH_Handler),
+    Some(ETH_WKUP_Handler),
+    Some(DCMI_PSSI_Handler),
+    Some(FDCAN2_IT0_Handler),
+    Some(FDCAN2_IT1_Handler),
+    Some(Cordic_Handler),
+    Some(FMAC_Handler),
+    Some(DTS_WKUP_Handler),
+    Some(RNG_Handler),
+    None,
+    None,
+    Some(HASH_Handler),
+    None,
+    None,
+    Some(TIM12_Handler),
+    Some(TIM13_Handler),
+    Some(TIM14_Handler),
+    Some(I3C1_EV_Handler),
+    Some(I3C1_ER_Handler),
+    Some(I2C4_EV_Handler),
+    Some(I2C4_ER_Handler),
+    Some(LPTIM3_Handler),
+    Some(LPTIM4_Handler),
+    Some(LPTIM5_Handler),
+    Some(LPTIM6_Handler),
+];
