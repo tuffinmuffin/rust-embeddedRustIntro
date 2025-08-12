@@ -61,7 +61,7 @@ SECTIONS
         _sbss = .; /* Start of bss section in VMA(ram)*/
         *(.bss)
         *(.bss*)
-        _edata = .; /* End of bss section */
+        _ebss = .; /* End of bss section */
         . = ALIGN(4);
     } > RAM
 

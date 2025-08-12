@@ -4,7 +4,6 @@
 
 //define vector table
 
-
 unsafe extern "C" {
     fn HardFault_Hander();
     fn MemManage_Handler();
@@ -91,10 +90,10 @@ unsafe extern "C" {
 
 unsafe extern "C" {
     static _sidata: u32; /* start of .data Flash*/
-    static _sdata: u32; /* start of .data in RAM */
-    static _edata: u32; /* end of .data in RAM */
-    static _sbss: u32;  /* start of .bss in RAM */
-    static _ebss: u32;  /* end of .bss in RAM */
+    static mut _sdata: u32; /* start of .data in RAM */
+    static mut _edata: u32; /* end of .data in RAM */
+    static mut _sbss: u32;  /* start of .bss in RAM */
+    static mut _ebss: u32;  /* end of .bss in RAM */
     }
 
 #[unsafe(link_section = ".isr_vector")]
@@ -227,10 +226,29 @@ extern "C" fn Default_Handler() {
 extern "C" fn Reset_Handler() {
 
     // Copy .data from flash to RAM
-    let src_is_flash: *const u32 = unsafe { &_sidata };
-    let dest_is_ram: *const u32 = unsafe { &_sdata };
+    let mut src_in_flash: *const u32 = &raw const _sidata;
+    let mut dest_in_ram: *mut u32= &raw mut _sdata;
+    let end_in_ram:*mut  u32 = &raw mut _edata;
+    let mut bss_addr: *mut u32 = &raw mut _sbss;
+    let end_bss: *mut u32 = &raw mut _ebss;
+    //let dest_is_ram:*mut u32 = ptr::addr_of_mut!(_sdata);
+    //let dest_is_ram= &raw mut _sdata;
+    //let end_is_ram= &raw mut _edata;
+    unsafe {
 
-    // Initialize .bss to zero
+        while dest_in_ram < end_in_ram {
+            *dest_in_ram = *src_in_flash;
+            dest_in_ram = dest_in_ram.add(1);
+            src_in_flash = src_in_flash.add(1);
+        }
+
+        // Initialize .bss to zero        
+        while bss_addr < end_bss {
+            *bss_addr = 0; // Initialize .bss to zero
+            bss_addr = bss_addr.add(1);
+        }
+    }
+
 
     // Call main function
     crate::main();
